@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
-public class Ruppy : MonoBehaviour
+public class Rupee : MonoBehaviour
 {
+    public event Action<Rupee> OnCollected;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +20,7 @@ public class Ruppy : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
+            OnCollected?.Invoke(this);
             Destroy(gameObject);
         }  
     }
